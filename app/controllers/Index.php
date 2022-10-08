@@ -2,7 +2,9 @@
 
 namespace controllers;
 
-class Index
+use core\controllerInterface;
+
+class Index implements controllerInterface
 {
     public function index(){
 
