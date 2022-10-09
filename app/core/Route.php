@@ -27,10 +27,19 @@ class Route
             self::notFound();
         }
         $controller = new $controllerClass;
-        if(!method_exists($controller,$actionName)){
+/*        if (!($controller instanceof controllerInterface)) {
+            //TODO generate error of type
+            exit('controller must be implement controllerInterface');
+        }*/
+        self::actionCaller($controller,$actionName);
+
+    }
+
+    static private function actionCaller(controllerInterface $controller, string $action){
+        if (!method_exists($controller, $action)) {
             self::notFound();
         }
-        $controller->$actionName();
+        $controller->$action();
     }
 
     static public function notFound()
@@ -39,12 +48,13 @@ class Route
         exit();
     }
 
-    static public function url(string $controller = null,string $action = null){
+    static public function url(string $controller = null, string $action = null)
+    {
         $url = '/';
-        if(!empty($controller)){
-            $url.=strtolower($controller);
-            if(!empty($action)){
-                $url.='/'.strtolower($action);
+        if (!empty($controller)) {
+            $url .= strtolower($controller);
+            if (!empty($action)) {
+                $url .= '/' . strtolower($action);
             }
         }
         return $url;
