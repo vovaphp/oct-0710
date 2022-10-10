@@ -13,7 +13,7 @@ class View
     public function __construct(string $template = null)
     {
         if (!empty($template)) {
-            $this->template = $template;
+            $this->template = $template.'_template';
         }
     }
 
