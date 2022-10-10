@@ -1,12 +1,15 @@
 <?php
 
+
 namespace controllers;
 
-use core\controllerInterface;
 
-class Index implements controllerInterface
+use core\AbstractController;
+
+class Index extends AbstractController
 {
-    public function index(){
-
+    public function index()
+    {
+        $this->view->render('index_index');
     }
 }
